@@ -4,18 +4,26 @@
 
 ## Доступ до таблиці: Project
 ### Початкове наповнення
-![image](https://github.com/user-attachments/assets/4894d5f1-09e9-4e79-b1e3-34e3305f1a3c)
+![image](https://github.com/user-attachments/assets/6d0ae27c-b127-469a-8fce-ad0a3ffd5c4b)
+
 ### Get all
-![image](https://github.com/user-attachments/assets/b814d76e-65dd-41ae-8119-45b1799467d8)
+![image](https://github.com/user-attachments/assets/4aa1f2d8-8153-4fca-9fa7-991649750acf)
+
 ### Post
-![image](https://github.com/user-attachments/assets/0d6cb6bb-1684-4f4f-a3a2-8169429b4ec9)
-![image](https://github.com/user-attachments/assets/8b58ae5e-9bd6-499a-9762-4b06fee9e3fd)
+![image](https://github.com/user-attachments/assets/857cea69-5376-4fe6-b0a3-9bc48dca157f)
+![image](https://github.com/user-attachments/assets/5b199e9e-950a-4422-8455-be8795f8f08b)
+
+
 ### Get {id}
-![image](https://github.com/user-attachments/assets/2d9295c0-408d-4729-bd18-1ff10aa6f847)
+![image](https://github.com/user-attachments/assets/3ae4e16e-9c36-4c8e-a1ac-8bd09713f10c)
+![image](https://github.com/user-attachments/assets/19eee836-6bcc-4815-b3cb-589e44c898db)
+
 ### Put {id}
-![image](https://github.com/user-attachments/assets/6068483d-2260-4e1b-86bd-bde963f48bc4)
-![image](https://github.com/user-attachments/assets/dc1d3a9a-15b9-41c4-8267-46a218dc00bd)
+![image](https://github.com/user-attachments/assets/48519d56-8040-4fe5-ac6c-ca96c22d376f)
+![image](https://github.com/user-attachments/assets/88216d30-ed2b-4233-b3a7-192f03334882)
+
 ### Delete {id}
-![image](https://github.com/user-attachments/assets/7b6d53e3-122a-419c-ac3f-52425f32b5a0)
-![image](https://github.com/user-attachments/assets/e9ce5d6a-55c3-4755-b77a-b883b7f352b5)
+![image](https://github.com/user-attachments/assets/753a48ba-4a4e-4ae3-90d5-19fb94daae6a)
+![image](https://github.com/user-attachments/assets/a1f8ad37-791c-474f-81fa-fbfffad1c098)
+
 
