@@ -1,6 +1,5 @@
 # Реалізація інформаційного та програмного забезпечення
 
-
 ## SQL-скрипт для створення початкового наповнення бази даних
 
 ```sql
@@ -150,4 +149,182 @@ INSERT INTO AccessGrant (member_id, permission_id) VALUES
 
 
 ## RESTfull сервіс для управління даними
+
+Цей RESTful сервіс розроблений з використанням .NET 7 та забезпечує функціонал для управління проектами. Основними компонентами цього сервісу є:
+
+<ul>
+  <li><strong>ASP.NET Core Web API</strong> — дозволяє створювати RESTful API з підтримкою контролерів, маршрутизації та моделі-вид-контролер (MVC).</li>
+  <li><strong>Entity Framework Core</strong> — використовується для взаємодії з базою даних через ORM (Object-Relational Mapping). Забезпечує легке створення моделей та автоматизацію більшості CRUD операцій.</li>
+  <li><strong>MySQL</strong> — реляційна база даних для зберігання даних проектів.</li>
+  <li><strong>Swagger (Swashbuckle)</strong> — використовується для документування та тестування API за допомогою OpenAPI Specification.</li>
+</ul>
+
+## Діаграма класів
+![image](https://github.com/user-attachments/assets/c1c8f0be-1b95-4460-bac7-a81023e93441)
+
+## Project Management API Specification
+
+## Entity
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProjectManagementAPI.Models
+{
+    [Table("project")]
+    public class Project
+    {
+        [Key]
+        public long Id { get; set; }
+
+        [Required]
+        [MaxLength(255)]
+        public string Title { get; set; }
+
+        public string? Description { get; set; }
+    }
+}
+```
+
+## Repository
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using ProjectManagementAPI.Models;
+
+namespace ProjectManagementAPI.Data
+{
+    public class ProjectManagementContext : DbContext
+    {
+        public ProjectManagementContext(DbContextOptions<ProjectManagementContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Project> Projects { get; set; }
+    }
+}
+```
+
+## Controller
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProjectManagementAPI.Data;
+using ProjectManagementAPI.Models;
+
+namespace ProjectManagementAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProjectsController : ControllerBase
+    {
+        private readonly ProjectManagementContext _context;
+
+        public ProjectsController(ProjectManagementContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
+        {
+            return await _context.Projects.ToListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Project>> GetProject(long id)
+        {
+            var project = await _context.Projects.FindAsync(id);
+            if (project == null) return NotFound();
+
+            return project;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Project>> PostProject(Project project)
+        {
+            _context.Projects.Add(project);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutProject(long id, Project project)
+        {
+            if (id != project.Id) return BadRequest();
+
+            _context.Entry(project).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Projects.Any(e => e.Id == id)) return NotFound();
+                throw;
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProject(long id)
+        {
+            var project = await _context.Projects.FindAsync(id);
+            if (project == null) return NotFound();
+
+            _context.Projects.Remove(project);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+    }
+}
+```
+
+## Main Class for Application Launch
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using ProjectManagementAPI.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ProjectManagementContext>(options =>
+    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
+
+app.Run();
+```
 
