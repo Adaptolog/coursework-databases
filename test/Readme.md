@@ -4,9 +4,9 @@
 
 ## Доступ до таблиці: Project
 ### Початкове наповнення
-![image](https://github.com/user-attachments/assets/4894d5f1-09e9-4e79-b1e3-34e3305f1a3c)
+![image](https://github.com/user-attachments/assets/ceacaea0-b7aa-4829-a884-d272eab1a1fc)
 ### Get all
-![image](https://github.com/user-attachments/assets/b814d76e-65dd-41ae-8119-45b1799467d8)
+![image](https://github.com/user-attachments/assets/531d9634-3cde-42cf-bef0-5ec1057fb321)
 ### Post
 ![image](https://github.com/user-attachments/assets/0d6cb6bb-1684-4f4f-a3a2-8169429b4ec9)
 ![image](https://github.com/user-attachments/assets/8b58ae5e-9bd6-499a-9762-4b06fee9e3fd)
