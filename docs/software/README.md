@@ -160,7 +160,7 @@ INSERT INTO AccessGrant (member_id, permission_id) VALUES
 </ul>
 
 ## Діаграма класів
-![image](https://github.com/user-attachments/assets/c1c8f0be-1b95-4460-bac7-a81023e93441)
+![hLJHRe8m57qduH_wwBBf1n32DEesafaODNirjTomRgLrRL6NPV--WY8KWMWoNY3jwUcvvvxBK6aiTPemr-4u0RN51D02b7vA6Liha3jg5dvS1vc7CAmKUX49Z0NNKZ06ijZBddiKyWWElJiFXIEYgU26AMMwYfXBkiFaknCpbLB83aGVhPc8Ov06yPf_-BQeu8ZzTPsgy9psZS9-9](https://github.com/user-attachments/assets/694210c3-9020-4694-a5ef-e5c1a8b32a33)
 
 ## Project Management API Specification
 
